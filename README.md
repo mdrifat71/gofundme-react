@@ -1,1 +1,2 @@
-# directory sturucture
+# Directory Sturucture
+
