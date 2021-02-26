@@ -97,6 +97,12 @@ function Header() {
   });
 
   /**
+   * Navigation bar sticky or not
+   */
+
+  const [sticky, setSticky] = useState(false);
+
+  /**
    * search box state
    */
   const [searchBox, setSearchBox] = useState({
@@ -219,9 +225,21 @@ function Header() {
       };
     });
   }, []);
+
+  useEffect(() => {
+    let scrollHandler = (e) => {
+      if (window.scrollY > 2) setSticky(true);
+      else setSticky(false);
+    };
+    window.addEventListener("scroll", scrollHandler);
+
+    return () => {
+      window.removeEventListener("scroll", scrollHandler);
+    };
+  }, []);
   return (
     <>
-      <HeaderWraper id="header" sticky={false}>
+      <HeaderWraper id="header" sticky={sticky}>
         <Container>
           <HeaderContainerDesktop>
             {/* header colunmn -1 */}
@@ -237,7 +255,7 @@ function Header() {
               <MenuItem
                 divider="true"
                 logo={<BsSearch />}
-                sticky={false}
+                sticky={sticky}
                 clickHandler={searchClickHandler}
               >
                 Search
@@ -250,6 +268,7 @@ function Header() {
                 dropDownHandler={() => {
                   dropDownHandler("discover");
                 }}
+                sticky={sticky}
               >
                 Discover
               </MenuItem>
@@ -259,13 +278,14 @@ function Header() {
                 dropDownHandler={() => {
                   dropDownHandler("fundRaiseFor");
                 }}
+                sticky={sticky}
               >
                 Fundraise for
               </MenuItem>
             </Grid>
             {/* header colunmn -2 Logo */}
             <Grid xs={4} container item style={{ alignItems: "center" }}>
-              <LogoContainer sticky={false}>
+              <LogoContainer sticky={sticky}>
                 {/* <img
                   src={Logo}
                   alt="logo"
@@ -287,6 +307,7 @@ function Header() {
                 dropDownHandler={() => {
                   dropDownHandler("howItWorks");
                 }}
+                sticky={sticky}
               >
                 How it works
               </MenuItem>
@@ -295,6 +316,7 @@ function Header() {
                   dropDown={menu.user.dropDown}
                   isDropdownOpen={menu.user.isDropdownOpen}
                   logo={<FaUserAlt />}
+                  sticky={sticky}
                   dropDownHandler={() => {
                     dropDownHandler("user");
                   }}
@@ -302,18 +324,21 @@ function Header() {
                   <strong>{state.user.name}</strong>
                 </MenuItem>
               ) : (
-                <MenuItem link="true" to="/login">
+                <MenuItem link="true" to="/login" sticky={sticky}>
                   Sign in
                 </MenuItem>
               )}
-              <MenuItem type="button" link="true" to="/login" sticky={false}>
+              <MenuItem type="button" link="true" to="/login" sticky={sticky}>
                 Start a GoFundMe
               </MenuItem>
             </Grid>
           </HeaderContainerDesktop>
           <HeaderContainerMobile>
             {mobileMenu && (
-              <MobileMenu mobileMenuToggle={mobileMenuToggle}></MobileMenu>
+              <MobileMenu
+                mobileMenuToggle={mobileMenuToggle}
+                sticky={sticky}
+              ></MobileMenu>
             )}
 
             {/* header colunmn -1 */}
@@ -326,7 +351,7 @@ function Header() {
                   inputValue={searchBox.value}
                 />
               )}
-              <MenuItem>
+              <MenuItem sticky={sticky}>
                 <BsSearch
                   style={{ fontSize: "1.8rem" }}
                   onClick={searchClickHandler}
@@ -335,13 +360,13 @@ function Header() {
             </Grid>
             {/* header colunmn -2 Logo */}
             <Grid xs={4} container item style={{ alignItems: "center" }}>
-              <LogoContainer sticky={false}>
+              <LogoContainer sticky={sticky}>
                 <Logo className="logo"></Logo>
               </LogoContainer>
             </Grid>
             {/* header colunmn -3 */}
             <Grid xs={4} item container style={{ justifyContent: "flex-end" }}>
-              <MenuItem>
+              <MenuItem sticky={sticky}>
                 <AiOutlineMenu
                   style={{ fontSize: "2.2rem" }}
                   onClick={mobileMenuToggle}

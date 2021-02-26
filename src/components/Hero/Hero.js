@@ -12,9 +12,11 @@ import six from "./image/6.jpg";
 import { HeroCarouselItem, HeroContentWraper, HeroWraper } from "./HeroItem";
 import { Container } from "../../style";
 import { Grid } from "@material-ui/core";
-import { GFMButtonGroup } from "../../utilities";
-
+import { HeroContent } from "./UtilComponents";
+import IntroVideo from "../IntroVideo/IntroVideo";
+import { useBaseLayer } from "../../utilities/";
 function Hero() {
+  const [state, dispatch] = useBaseLayer();
   /**
    * carousel effect
    */
@@ -41,6 +43,10 @@ function Hero() {
     }, 5000);
   };
 
+  /**
+   * toggle video
+   */
+
   /** Effect */
   useEffect(() => {
     carouselEffect();
@@ -48,23 +54,19 @@ function Hero() {
   return (
     <>
       <HeroWraper>
-        <Container style={{ zIndex: 3, width: "116rem", paddingLeft: "2rem" }}>
-          <HeroContentWraper>
-            <h1>Fundraising for the people and causes you care about</h1>
-            <h3>Get Started Today.</h3>
-
-            <div style={{ marginTop: "3.5rem" }}>
-              <GFMButtonGroup />
-            </div>
-          </HeroContentWraper>
-        </Container>
+        {state.video && <IntroVideo />}
+        <HeroContent desktop={true} />
         <HeroCarouselItem
           className="carousel-item"
           style={{ backgroundImage: `url(${one})` }}
         >
-          <Container>
-            <h4>Justin raised over $700</h4>
-          </Container>
+          <div style={{ width: "100%" }}>
+            <Container
+              style={{ display: "flex", justifyContent: "space-between" }}
+            >
+              <h4>Justin raised over $700</h4>
+            </Container>
+          </div>
         </HeroCarouselItem>
         <HeroCarouselItem
           className="carousel-item"

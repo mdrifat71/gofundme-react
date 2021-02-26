@@ -193,7 +193,7 @@ export const SearchBox = ({
  * mobile navigation
  * @param {function} mobileMenuToggle
  */
-export const MobileMenu = ({ mobileMenuToggle }) => {
+export const MobileMenu = ({ mobileMenuToggle, sticky }) => {
   const [menu, setMenu] = useState({
     discover: {
       isDropdownOpen: false,

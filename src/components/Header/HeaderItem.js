@@ -33,7 +33,7 @@ export const HeaderContainerDesktop = styled.div`
 `;
 
 export const HeaderContainerMobile = styled.div`
-  height: 5rem;
+  height: 6rem;
   padding: 0 1rem;
   display: flex;
   justify-content: space-between;

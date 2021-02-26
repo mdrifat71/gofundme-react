@@ -15,6 +15,7 @@ function App() {
     user: {
       name: "",
     },
+    video: false,
   });
   return (
     <>

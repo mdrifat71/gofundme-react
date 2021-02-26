@@ -10,10 +10,12 @@ export const FixedOverlay = styled.div`
   top: 0;
   bottom: 0;
   left: 0;
+  right: 0;
   z-index: 110;
   width: 100vw;
-  height: 100vh;
   overflow-y: auto;
+  overflow-x: hidden;
+
   display: ${(props) => props.display};
   background-color: rgba(51, 51, 51, 0.45);
 `;
@@ -35,14 +37,21 @@ export const GoFundMeButton = styled.button`
   color: #fff;
   font-family: inherit;
   border-radius: 4px;
-  min-width: ${(props) => props.minWidth || "30rem"};
+  min-width: ${(props) => props.minWidth || "auto"};
+  max-width: ${(props) => props.maxWidth && props.maxWidth};
+  width: ${(props) => props.width || "auto"};
 
   a {
     color: #fff;
-
+    text-decoration: none;
     &:hover {
       text-decoration: none;
     }
+  }
+
+  @media only screen and (max-width: 360px) {
+    width: 100%;
+    min-width: 100%;
   }
 `;
 
@@ -57,7 +66,9 @@ export const GoFundMeVideoButton = styled.button`
   color: #fff;
   font-family: inherit;
   border-radius: 4px;
-  /* min-width: ${(props) => props.minWidth || "30rem"}; */
+  min-width: ${(props) => props.minWidth || "auto"};
+  max-width: ${(props) => props.maxWidth};
+  width: ${(props) => props.width};
 
   height: 5rem;
   display: flex;
@@ -73,5 +84,14 @@ export const GoFundMeVideoButton = styled.button`
   svg {
     font-size: 5rem;
     margin-right: 2rem;
+  }
+
+  @media only screen and (max-width: 1068px) {
+    color: #333;
+  }
+
+  @media only screen and (max-width: 360px) {
+    width: 100%;
+    min-width: 100%;
   }
 `;

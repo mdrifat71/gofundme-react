@@ -1,12 +1,13 @@
 import React from "react";
-import { Header, Hero } from "../../components";
+import { Header, Hero, HeroContentMobile } from "../../components";
 
 function Home() {
   return (
-    <div>
+    <>
       <Header />
       <Hero />
-    </div>
+      <HeroContentMobile />
+    </>
   );
 }
 

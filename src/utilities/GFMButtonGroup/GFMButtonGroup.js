@@ -3,7 +3,7 @@ import React from "react";
 import { GoFundMeButton, GoFundMeVideoButton } from "../../style";
 
 import { FiPlayCircle } from "react-icons/fi";
-function GFMButtonGroup() {
+function GFMButtonGroup({ videoToggleHandler }) {
   return (
     <>
       <Grid container>
@@ -28,7 +28,12 @@ function GFMButtonGroup() {
           ></span>
         </Grid>
         <Grid item xs={12} md={7}>
-          <GoFundMeVideoButton>
+          <GoFundMeVideoButton
+            onClick={() => {
+              videoToggleHandler();
+              console.log("dfdf");
+            }}
+          >
             <FiPlayCircle />
             See how GoFundMe works
           </GoFundMeVideoButton>

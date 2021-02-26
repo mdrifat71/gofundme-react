@@ -6,6 +6,10 @@ export const HeroWraper = styled.section`
   display: flex;
   align-items: center;
   position: relative;
+
+  @media only screen and (max-width: 1068px) {
+    height: 25rem;
+  }
 `;
 
 export const HeroCarouselItem = styled.div`
@@ -21,12 +25,23 @@ export const HeroCarouselItem = styled.div`
   align-items: flex-end;
   justify-content: left;
   h4 {
-    width: 114rem;
     padding: 1.5rem 0;
+    padding-left: 2rem;
     text-align: left;
     color: #fff;
     font-size: 1.7rem;
     font-weight: normal;
+    border: 0;
+
+    @media only screen and (max-width: 1068px) {
+      background: #fbf8f6;
+      padding: 2rem;
+      padding-bottom: 3rem;
+      color: #333;
+      width: 100%;
+      position: relative;
+      top: 7rem;
+    }
   }
 `;
 
@@ -50,6 +65,6 @@ export const HeroContentWraper = styled.div`
   }
 
   @media only screen and (max-width: 1068px) {
-    display: none;
+    display: ${(props) => props.desktop && "none"};
   }
 `;
